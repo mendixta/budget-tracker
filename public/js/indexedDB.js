@@ -1,5 +1,5 @@
 let db;
-const request = indexedDB.open("Budget_Tracker", 1);
+const request = indexedDB.open("Budget", 1);
 const storeName = "new_transaction";
 
 request.onupgradeneeded = function (event) {
