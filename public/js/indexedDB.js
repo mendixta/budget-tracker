@@ -1,5 +1,5 @@
 let db;
-const request = indexedDB.open("Budget", 1);
+const request = indexedDB.open("Budget_Tracker", 1);
 const storeName = "new_transaction";
 
 request.onupgradeneeded = function (event) {
@@ -17,12 +17,6 @@ request.onsuccess = function (event) {
         uploadData();
     }
 };
-
-function saveRecord(record) {
-    const transaction = db.transaction([storeName], "readwrite");
-    const store = transaction.objectStore(storeName);
-    store.add(record);
-}
 
 function uploadData() {
     const transaction = db.transaction([storeName], "readwrite");
@@ -46,8 +40,14 @@ function uploadData() {
                     store.clear();
                 });
         }
+ 
     };
+   
 }
-
+function saveRecord(record) {
+    const transaction = db.transaction([storeName], "readwrite");
+    const store = transaction.objectStore(storeName);
+    store.add(record);
+}
 
 window.addEventListener('online', uploadData);
